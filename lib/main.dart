@@ -7,15 +7,16 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
+    return ContentTest();
+
+    /*return MaterialApp(
       title: '我的App',
-      theme: ThemeData(primaryColor: Colors.green),
+      theme:ThemeData(primaryColor: Colors.green),
       home: Scaffold(
-        appBar: AppBar(title: Text('My App!')),
+        appBar: AppBar(title: Text('My App')),
         body: Center(child:Content()),
       ),
-    );
+    );*/
   }
 }
 
@@ -45,5 +46,52 @@ class Content extends StatelessWidget {
                 decorationStyle: TextDecorationStyle.double,
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold)));
+  }
+}
+
+class ContentTest extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'open url',
+      home: Scaffold(
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text('hello flutter'),
+        ),
+        body: Center(
+          child: DecoratedBox(
+//              padding: EdgeInsets.all(16),
+//            padding: EdgeInsets.fromLTRB(10, 20, 30, 40),
+//            padding: EdgeInsets.only(left: 10, right: 30),
+            decoration: BoxDecoration(
+              // 背景色
+                color: Colors.lightBlueAccent,
+                // 边框，
+                border: Border.all(color: Colors.yellowAccent, style: BorderStyle.solid, width: 5),
+                // 背景图
+                image: new DecorationImage(
+                    image: new NetworkImage(
+                        'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1484037605,2864708693&fm=11&gp=0.jpg'),
+                    fit: BoxFit.cover
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                boxShadow:[
+                  BoxShadow(
+                    color: Colors.redAccent,
+                    offset: Offset(20, 20),
+                    blurRadius: 10,
+                  ),
+                ]
+            ),
+            child: Container(
+              height: 200,
+              width: 200,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
