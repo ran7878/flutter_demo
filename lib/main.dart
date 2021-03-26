@@ -25,23 +25,25 @@ class Content extends StatelessWidget {
     return Container(
         width: 300.0,
         height: 400.0,
-        alignment: Alignment.center,
+        //padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.symmetric(vertical:120.0,horizontal: 50.0),
+        alignment: Alignment.topCenter,
         decoration: BoxDecoration(
             color: Colors.amberAccent,
             border: Border.all(
                 color: Colors.green, width: 2.0, style: BorderStyle.solid),
             borderRadius: BorderRadius.all(Radius.circular(10.0))),
-        child: Text("我是一条小青龙、小青龙、飞呀飞呀飞到天空中",
-            textScaleFactor: 1.5,
-            maxLines: 3,
+        child: Text("this is a flutter application.",
+            textScaleFactor: 1.0,
+            maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            textDirection: TextDirection.rtl,
+            textDirection: TextDirection.ltr,
             style: TextStyle(
                 color: Colors.white,
-                decoration: TextDecoration.lineThrough,
+                decoration: TextDecoration.underline,
                 decorationColor: Colors.greenAccent,
-                decorationStyle: TextDecorationStyle.dashed,
-                fontSize: 50.0,
+                decorationStyle: TextDecorationStyle.double,
+                fontSize: 20.0,
                 fontWeight: FontWeight.bold)));
   }
 }
