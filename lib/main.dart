@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'res/data.dart';
 
 void main() {
@@ -24,35 +25,50 @@ class MyHomePage extends StatelessWidget {
 
   final String title;
 
-  Widget getItems(BuildContext context, int index) {
-    return ListTile(
-      title: Text(listData[index]["title"]),
-      subtitle: Text(listData[index]["author"]),
-      trailing: Image.network(listData[index]["imgUrl"]),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: title,
         home: Scaffold(
-          appBar: AppBar(title: Text(title)),
-          body: ListView.builder(
-            itemCount: listData.length,
-            itemBuilder: getItems
-            /*(context, index) {
-              return ListTile(
-                title: Text(listData[index]["title"]),
-                subtitle: Text(
-                  listData[index]["author"],
-                  style: TextStyle(color: Colors.green),
-                ),
-                trailing: Image.network(listData[index]["imgUrl"]),
-              );
-            }*/
-            ,
-          ),
-        ));
+            appBar: AppBar(title: Text(title)),
+            body: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3),
+                itemCount: listData.length,
+                itemBuilder: _getItem)));
   }
+}
+
+Widget _getItem(BuildContext context, int index) {
+  return Padding(
+    padding: EdgeInsets.fromLTRB(0, 0, 6, 0),
+    child: Padding(
+        padding: EdgeInsets.fromLTRB(6, 6, 0, 0),
+        child: Container(
+          width: 100,
+          height: 100,
+          padding: EdgeInsets.all(2),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(width: 1, color: Colors.blue)),
+          child: Column(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Image.network(
+                    listData[index]['imgUrl'],
+                    fit: BoxFit.cover,
+                  )),
+              SizedBox(height: 6),
+              Text(
+                listData[index]['title'],
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.red),
+              )
+            ],
+          ),
+        )),
+  );
 }
